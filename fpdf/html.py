@@ -7,7 +7,7 @@ __copyright__ = "Copyright (C) 2010 Mariano Reingart"
 __license__ = "LGPL 3.0"
 
 # Inspired by tuto5.py and several examples from fpdf.org, html2fpdf, etc.
-
+import html
 from .fpdf import FPDF
 from .py3k import PY3K, basestring, unicode, HTMLParser
 
@@ -397,6 +397,7 @@ class HTMLMixin(object):
     def write_html(self, text, image_map=None):
         "Parse HTML and convert it to PDF"
         h2p = HTML2FPDF(self, image_map)
-        text = h2p.unescape(text) # To deal with HTML entities
+        #text = h2p.unescape(text) # To deal with HTML entities
+        text = html.unescape(text)  # To deal with HTML entities
         h2p.feed(text)
 
